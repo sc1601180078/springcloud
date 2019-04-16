@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.mapper.UserMapper" >
+
+
+    <insert id="saveUser" parameterType="com.jk.model.User">
+        INSERT into t_user(name,age) VALUES(#{userName},#{userAge})
+    </insert>
+
+
+
+    <update id="updateUser" parameterType="com.jk.model.User">
+        UPDATE  t_user set name=#{userName},age=#{userAge} WHERE id=#{userId}
+
+    </update>
+
+
+    <delete id="deleteItem" parameterType="int">
+        delete from t_user where id in
+        <foreach collection="array" index="index" item="item" open="("
+                 close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+</mapper>
